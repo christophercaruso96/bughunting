@@ -1,5 +1,3 @@
-//FATTO AL VOLO SENZA COMPILAZIONE PUO' CONTENERE ERRORI 
-
 #include <stdio.h>
 
 void menu();
@@ -13,6 +11,7 @@ int main(){
 	char scelta = '\0';
 	menu();
 	do{
+        menu();
         scanf(" %c", &scelta);
 
         switch(scelta)
@@ -62,7 +61,7 @@ void moltiplica(){
 }
 
 
-void dividi ()
+void dividi()
 {
     int  a = 0 ,b = 0;
     printf ("Inserisci il numeratore:\n");
@@ -89,7 +88,9 @@ void dividi ()
 
 void ins_string ()
 {
-    char stringa[10] = {'\0'};
-    printf ("Inserisci la stringa:\n");
-    scanf ("%9s", &stringa);
+    char stringa[10] = {'\0'}; //inizializzata la stringa
+    printf("Inserisci la stringa:\n");
+    scanf("%9s", stringa); //se l'utente inserisce più dei caratteri consentiti li ignora (mette nella stringa solo fino a 9 caratteri),
+                            //il decimo è '\0'. I carratteri extra vengono ignorati e non caricati nella stringa (array di caratteri con '\0' finale).
+    printf("Stampiamo la stringa inserita: %s\n", stringa);
 }
