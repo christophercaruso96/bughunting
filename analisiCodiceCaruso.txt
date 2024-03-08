@@ -1,0 +1,74 @@
+Analisi del Codice (per i numeri di riga fare riferimento al file TracciaOriginale.txt)
+
+Una versione del codice modificata è visibile nel file "TracciaModificata.c"
+
+Per l'analisi svolta in gruppo, onde evitare di creare confusione ci siamo limitati agli argomenti trattati durante le lezioni.
+Non sono stati affrontati ulteriori temi che sarebbero potuti tornare utili per una maggiore efficienza e sicurezza del codice.
+
+
+//ANALISI DIRETTIVE PREPROCESSORE E PROTOTIPI FUNZIONI
+
+Riga 1: Direttiva corretta al preprocessore per inclusione libreria
+
+Righe 3-6: Nei Prototipi delle funzioni (dichiarazioni) si potrebbe omettere lo spazio tra il nome funzione e le (). 
+		   Non è un'errore di sintassi, logico o funzionale ma è per una corretta impaginazione del codice.	 
+
+
+
+//ANALISI MAIN
+Riga 9: Eliminerei lo spazio tra "int main" e le () sempre per una corretta impaginazione del codice.
+		   
+Righe 10-11: E' presente una riga vuota tra int main () e la { di apertura del blocco di istruzioni. Da eliminare per una corretta impaginazione del codice.
+
+Riga 12: nell'inizializzazione di una variabile char le graffe non sono necessarie (char scelta = '\0'; è più che sufficiente per inizializzare la variabile 
+		 col carattere null che viene anche usato per indicare la fine di una stringa)
+		 
+Riga 13: nella call function di menu lo spazio tra il nome funzione e le () può essere rimosso per una corretta impaginazione del codice
+		 (vale per tutte le righe in cui è presente lo spazio tra nome funzione e () )
+		 
+Riga 14: nella scanf va messo il %c per l'inserimento di una variabile di tipo char. 
+		 Inoltre è necessario l'utilizzo di uno spazio (e.g. scanf(" %c", &scelta);) come visto a lezione.
+		 
+Righe 16-27: Ci sono 3 considerazioni principali da fare sul costrutto switch-case
+				a) Va previsto il caso di default (se non viene inserito uno dei 3 caratteri previsti il programma deve ooportunamente avvisare l'utente)
+				b) Va previsto il caso in cui l'utente inserisca una minuscola (si può usare la funzione toupper() della libreria ctype.h oppure usare il doppio case, e.g. case 'A': case 'a':)
+				c)Tramite un do-while si può riproporre il menù di scelta e inserire l'opzione di uscita a scelta dell'utente
+
+Riga 19-20: codice non indentato correttamente
+
+Riga 29: return 0; non è indentato correttamente
+
+
+//ANALISI DEFINIZIONI FUNZIONI
+
+//Analisi void moltiplica()
+Righe 43-48: se vengono dichiarate due variabili short int, nella scanf va inserito %hd (%d è per int, %ld per long int, %f per float-double).
+			 Nella riga 47 la scanf contiene adirittura un %f che va sostituito con %hd.
+			 Inoltre in fase di inizializzazione è più corretto mettere short int a = 0, b = 0;
+
+Riga 50: la variabile prodotto deve essere di un tipo con numero byte superiore alle variabili di cui viene eseguito il prodotto 
+		 (e.g. se gli operandi sono due short int, il prodotto deve ricadere sul tipo int, se sono due int deve ricadere sul tipo long int)
+		 Si deve quindi eseguire un cast (e.g. int prodotto = (int)a*b;)
+		 
+Riga 52: vanno adattati gli output ai tipi nel caso di short int per gli operandi e int per il prodotto (printf("Il prodotto tra %hd e %hd e': %d", a,b, prodotto);)
+
+//Analisi void dividi()			 
+Riga 58: In fase di inizializzazione è più corretto mettere int a = 0, b = 0;
+
+Riga 61: codice non indentato correttamente
+
+Riga 62: va aggiunto un controllo nel caso in cui venga inserito come denominatore il valore 0 (denominatore e non denumeratore).
+
+Riga 64: Col % viene restituito il resto della divisione tra due interi. 
+		 Va messo / e inoltre va usato un casting al tipo float per ottenere un risultato senza troncamento (e.g. float divisione = (float) a/b;)
+		 
+Riga 66: Va messo il %f per la variabile float divisione sulla base di quanto detto in merito alla Riga 64
+
+//Analisi void ins_string()
+Riga 75: codice non indentato correttamente inoltre sarebbe meglio inizializzare
+
+Riga 77: va introdotto un controllo sulla scanf in modo tale che l'utente non inserisca più caratteri del dovuto (in questo caso su una stringa di 10 ne ha a disposizione 9 perchè uno è occupato dal '\0').
+
+
+//GENERALE
+Nell'output delle printf metterei sempre un \n finale per pulizia.
